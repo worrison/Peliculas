@@ -1,3 +1,38 @@
+
+#main{
+    width: 95vw;
+    display: flex;
+
+}
+.sidebar
+{
+    display: flex;
+    width: 20%;
+    background-color: cornflowerblue;
+    justify-content: center;
+}
+.container
+{
+    width: 80%;
+}
+#search
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    margin: 20px;
+}
+select
+{
+    display: flex;
+    width: 90%;
+    color: cornflowerblue;
+    background-color: aliceblue;
+    border-color: aliceblue;
+    margin-left: 10px;
+    flex-wrap: wrap;
+}
 #list-films
 {
     display:flex;
@@ -8,10 +43,20 @@
 {
     width: 300px;
 }
-.image,.title, .vote
+.image,.title
 {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+.image img
+{
+    width: 80%;
+    border-radius: 10%;
+}
+.vote{
+    justify-content: space-around;
+    display: flex;
     align-items: center;
 }
 .card h2

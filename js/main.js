@@ -10,7 +10,7 @@ window.addEventListener('load',event)
       card.classList.add('card');
       content.appendChild(card);
       card.innerHTML=`<div class="image"><img src="${urlImage+film.poster_path}"></div>
-      <div class="title"><h2>${film.title}</h2></div><div class="vote"><p>${film.vote_average}</p></div>`;
+      <div class="title"><h2>${film.title}</h2></div><div class="vote"><p>${film.vote_average}</p><p>${film.release_date}</p></div>`;
       //content.appendChild(titleFilm);
   }
 }
