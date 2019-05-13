@@ -1,3 +1,20 @@
-body{
-    
+#list-films
+{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+}
+.card
+{
+    width: 300px;
+}
+.image,.title, .vote
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card h2
+{
+    font-size:1.2em; 
 }
