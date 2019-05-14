@@ -24,7 +24,10 @@ function showFilms(filmsToPrint)
         content.appendChild(card);
         let{poster_path:image,title,vote_average:vote,release_date:date}=film;//desestructuracion de objetos.
         card.innerHTML=`<div class="image"><img src="${URL_IMAGE+image}"></div>
-        <div class="title"><h2>${title}</h2></div><div class="vote"><p>${vote}</p><p>${date}</p></div>`;
+        <div class="title"><h2>${title}</h2></div><div class="vote"><p>${vote}</p><p>${date.substr(0,4)}</p></div>`;
+        /*card.innerHTML=`<img src="${URL_IMAGE+image}">
+       <h2>${title}</h2><p>${vote}</p><p>${date.substr(0,4)}</p>`;*/
+      
     }
   
 }
@@ -34,4 +37,3 @@ function buscar()
   let resultBusqueda=films.filter(pelicula =>pelicula.title.toLowerCase().includes(textoBuscar.toLowerCase()));
   showFilms(resultBusqueda);
 }
-str.includes

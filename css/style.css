@@ -6,7 +6,27 @@
 }
 #textBuscar
 {
-    width: 90%;
+    width: 80%;
+    border: 0;
+    color: #6b6b6b;
+    font-size: 2em;
+}
+#sectionSearch
+{
+    background-color: #6b6b6b;
+    padding: 10px;
+    margin: 10px;
+    position: sticky;
+    top: 0;
+}
+input[type="button"]
+{
+    background-color: black;
+    color: wheat;
+    border: 0;
+    padding: 10px 25px;
+    font-size: 1em;
+    font-weight: bold;
 }
 #search
 {
@@ -34,8 +54,9 @@
 }
 .image img
 {
-    width: 80%;
+    width: 95%;
     border-radius: 10%;
+    max-height: 390px;
 }
 .vote{
     justify-content: space-around;
