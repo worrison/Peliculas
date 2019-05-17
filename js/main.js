@@ -5,8 +5,6 @@ const API_KEY = '9ec2c792cfa94b0acb15cb59b0051990';
 const API_POPULAR_URL = 'movie/popular';
 const API_CATEGORIES = 'genre/movie/list';
 let peliculas;
-/*https://api.themoviedb.org/3/genre/movie/list?api_key=9ec2c792cfa94b0acb15cb59b0051990*/
-
 
 window.addEventListener('load',onLoad);
 function onLoad()
@@ -14,7 +12,6 @@ function onLoad()
   let generos;
   let btnbuscar=document.querySelector('#btnBuscar');
   btnbuscar.addEventListener('click',buscar);
-  //showFilms(films);
   axios.get(API_URL + API_POPULAR_URL + '?api_key='+ API_KEY).then((response)=>
   {
     //console.log(response.data.results);
@@ -58,7 +55,6 @@ function showFilms(filmsToPrint)
         card.innerHTML=`<div class="image"><img src="${URL_IMAGE+image}"></div>
         <div class="title"><h2>${title}</h2></div><div class="vote"><p>${vote}</p><p>${date.substr(0,4)}</p></div>`; 
     }
-  
 }
 function buscar()
 {
