@@ -12,6 +12,10 @@ function onLoad()
 {
   let generos;
   let btnbuscar=document.querySelector('#btnBuscar');
+  let inputText = document.getElementById("textBuscar");
+  inputText.addEventListener("keyup", function(event) {
+    document.getElementById("btnBuscar").click();
+  });
   btnbuscar.addEventListener('click',buscar);
   axios.get(API_URL + API_POPULAR_URL + '?api_key='+ API_KEY).then((response)=>
   {
