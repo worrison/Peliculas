@@ -51,9 +51,20 @@ function showFilms(filmsToPrint)
         let card=document.createElement("div");
         card.classList.add('card');
         content.appendChild(card);
+<<<<<<< HEAD
         let{poster_path:image,title,vote_average:vote,release_date:date}=film;//desestructuracion de objetos.
         card.innerHTML=`<div class="image"><img src="${URL_IMAGE+image}"></div>
         <div class="title"><h2>${title}</h2></div><div class="vote"><p>${vote}</p><p>${date.substr(0,4)}</p></div>`; 
+=======
+        let{id,poster_path:image,title,vote_average:vote,release_date:date}=film;//desestructuracion de objetos.
+        let url="";
+        url=window.location.href+"/detalle?"+id;
+        card.innerHTML=`<a href="${url}"><div class="image"><img src="${URL_IMAGE+image}"></div>
+        <div class="title"><h2>${title}</h2></div><div class="vote"><p>${vote}</p><p>${date.substr(0,4)}</p></div></a>`;
+        /*card.innerHTML=`<img src="${URL_IMAGE+image}">
+       <h2>${title}</h2><p>${vote}</p><p>${date.substr(0,4)}</p>`;*/
+      
+>>>>>>> 5b06aec7ef648d85c083924042476d61c0d39f29
     }
 }
 function buscar()
