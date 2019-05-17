@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import films from './films.js';
 const IMG_PATH = 'http://image.tmdb.org/t/p/w185/';
 window.addEventListener('load',load);
@@ -18,6 +17,3 @@ function load()
     body.appendChild(divFilm);
 
 }
-=======
-import films from './films.js'
->>>>>>> 5b06aec7ef648d85c083924042476d61c0d39f29
