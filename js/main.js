@@ -7,6 +7,7 @@ const API_CATEGORIES = 'genre/movie/list';
 let peliculas;
 
 window.addEventListener('load',onLoad);
+
 function onLoad()
 {
   let generos;
@@ -36,6 +37,7 @@ function onLoad()
       });
   });
 }
+
 function showFilms(filmsToPrint)
 {
   console.log(filmsToPrint);
@@ -50,16 +52,20 @@ function showFilms(filmsToPrint)
       console.log(film.title);
         let card=document.createElement("div");
         card.classList.add('card');
+        let{id:id,poster_path:image,title,vote_average:vote,release_date:date}=film;//desestructuracion de objetos.
+        //let ruta=window.location.href;
+        let detalle="detalle.html?id="+id;
+        console.log(detalle);
+        card.innerHTML=`<a href="${detalle}"><div class="image"><img src="${URL_IMAGE+image}"></div>
+        <div class="title"><h2>${title}</h2></div><div class="vote"><p>${vote}</p><p>${date.substr(0,4)}</p></div></a>`;
         content.appendChild(card);
-        let{poster_path:image,title,vote_average:vote,release_date:date}=film;//desestructuracion de objetos.
-        card.innerHTML=`<div class="image"><img src="${URL_IMAGE+image}"></div>
-        <div class="title"><h2>${title}</h2></div><div class="vote"><p>${vote}</p><p>${date.substr(0,4)}</p></div>`; 
     }
 }
+
 function buscar()
 {
-  let textoBuscar=document.querySelector('#textBuscar').value;
-  let resultBusqueda=peliculas.filter(pelicula =>pelicula.title.toLowerCase().includes(textoBuscar.toLowerCase()));
+  let textoBuscar=document.querySelector('#textBuscar').value.toLowerCase();
+  let resultBusqueda=peliculas.filter(pelicula =>pelicula.title.toLowerCase().includes(textoBuscar));
   console.log(resultBusqueda);
   showFilms(resultBusqueda);
 }

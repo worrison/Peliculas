@@ -5,6 +5,7 @@ function load()
 {
     let url=new URL(window.location.href);
     let result = url.searchParams.get('id');
+    console.log(result);
     let pelicula = films.find((iteracion) => result == iteracion.id);
     let divFilm = document.createElement('article');
     divFilm.innerHTML = `
