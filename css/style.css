@@ -108,6 +108,17 @@ p.card-text.text-light.text-center {
     transition: opacity 1s;
 }
 footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
     padding: 40px 0 40px 0;
     background-color: #020f18;
+    position: sticky;
+    bottom: 0;
+}
+.fab {
+    color: #fb131f;
+    margin: 20px;
+    font-size: 1.2em;
 }
