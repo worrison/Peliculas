@@ -1,3 +1,5 @@
+
+/*barra de navegacion*/
 #nav
 {
     background-color: #020f18;
@@ -10,6 +12,7 @@
     padding-top: 20px;
     padding-bottom: 20px;
 }
+/*Section busqueda*/
 #sectionSearch
 {
     padding: 20px;
@@ -49,12 +52,14 @@ i.fa.fa-search
     -moz-border-radius: 4px 4px 4px 4px;
     -webkit-border-radius: 4px 4px 4px 4px;
     border: 0px solid #000000;
+    color: #b2b2b3;
 }
 
 input::placeholder
 {
     color: #566a88;
 }
+/*section listado pelicualas*/
 #list-films
 {
     display: flex;
@@ -68,8 +73,17 @@ input::placeholder
     margin: 10px;
     border: 0;
 }
+.fa.fa-star
+{
+    color: gold;
+}
+
 .card p{
     font-family: 'Lato', sans-serif;
+}
+p.card-text.text-light.text-center {
+    font-size: 1.5em;
+    font-weight: 900;
 }
 .card-body
 {
@@ -92,4 +106,8 @@ input::placeholder
     -o-transition: opacity 1s;
     -ms-transition: opacity 1s;
     transition: opacity 1s;
+}
+footer {
+    padding: 40px 0 40px 0;
+    background-color: #020f18;
 }

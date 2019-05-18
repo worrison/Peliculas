@@ -67,11 +67,11 @@ function showFilms(filmsToPrint) {
     card.innerHTML = `<a href="${detalle}">
         <img src="${URL_IMAGE+image}"class="card-img-top">
         <div class="card-body">
-          <p class="card-text text-light">${vote}</p>
+          <p class="card-text text-light"><i class="fa fa-star"></i>${vote}</p>
           <p class="card-text text-light text-center">${title}</p>
           <p class="card-text text-light">${date.substr(0,4)}</p>
-          </div>
-            </a>`;
+        </div>
+        </a>`;
     content.appendChild(card);
   }
 }
