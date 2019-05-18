@@ -40,6 +40,7 @@ function onLoad() {
   });
 }
 
+
 function showFilms(filmsToPrint) {
   console.log(filmsToPrint);
   let content = document.querySelector('#list-films');
@@ -60,10 +61,17 @@ function showFilms(filmsToPrint) {
       vote_average: vote,
       release_date: date
     } = film; //desestructuracion de objetos.
+
     let detalle = "detalle.html?id=" + id;
-    console.log(detalle);
-    card.innerHTML = `<a href="${detalle}"><div class="image"><img src="${URL_IMAGE+image}"></div>
-        <div class="title"><h2>${title}</h2></div><div class="vote"><p>${vote}</p><p>${date.substr(0,4)}</p></div></a>`;
+    
+    card.innerHTML = `<a href="${detalle}">
+        <img src="${URL_IMAGE+image}"class="card-img-top">
+        <div class="card-body">
+          <p class="card-text text-light">${vote}</p>
+          <p class="card-text text-light text-center">${title}</p>
+          <p class="card-text text-light">${date.substr(0,4)}</p>
+          </div>
+            </a>`;
     content.appendChild(card);
   }
 }

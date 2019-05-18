@@ -1,69 +1,95 @@
-
-#main{
-    width: 95vw;
-    display: flex;
-
-}
-#textBuscar
+#nav
 {
-    width: 80%;
-    border: 0;
-    color: #6b6b6b;
-    font-size: 2em;
+    background-color: #020f18;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#logo
+{   
+    background-color: #020f18;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 #sectionSearch
 {
-    background-color: #6b6b6b;
-    padding: 10px;
-    margin: 10px;
-    position: sticky;
-    top: 0;
-}
-input[type="button"]
-{
-    background-color: black;
-    color: wheat;
-    border: 0;
-    padding: 10px 25px;
-    font-size: 1em;
-    font-weight: bold;
+    padding: 20px;
+    justify-content: center;
+    background-color: #020f18;
+    display: flex;
 }
 #search
 {
+    background-color: #243a4f;
+    width: 70%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+}
+#btnBuscar
+{
+    color: white;
+    background-color: #fb131f;
+    padding: 10px;
+    border: 0;
+    height: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 0px 4px 4px 0px;
+}
+i.fa.fa-search
+{
+    font-size: 1.5em;
+}
+#textBuscar
+{
+    background: #243a4f;
     width: 100%;
-    height: 50px;
-    margin: 20px;
+    border: 0;
+    padding: 10px;
+    border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    border: 0px solid #000000;
+}
+
+input::placeholder
+{
+    color: #566a88;
 }
 #list-films
 {
-    display:flex;
-    flex-wrap:wrap;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    margin-top: 20px;
 }
 .card
 {
-    width: 300px;
+    width: 22%;
+    margin: 10px;
+    border: 0;
 }
-.image,.title
+.card p{
+    font-family: 'Lato', sans-serif;
+}
+.card-body
 {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+
 }
-.image img
+.card-body:hover
 {
-    width: 95%;
-    border-radius: 10%;
-    max-height: 390px;
-}
-.vote{
-    justify-content: space-around;
-    display: flex;
-    align-items: center;
-}
-.card h2
-{
-    font-size:1.2em; 
+    background-color: #243a4fcc;
+    opacity: 1;
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    -ms-transition: opacity 1s;
+    transition: opacity 1s;
 }
