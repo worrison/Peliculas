@@ -34,8 +34,8 @@ function showDetails()
     divFilm.setAttribute("class", "container");//añado la clase container al elemento article
     divFilm.innerHTML = `
     <div class="img-fluid"><img src="${URL_IMAGE}${film.poster_path}" alt="${film.title}"></div>
-    <div class="detail"><h1 class="title">${film.title}<span>${film.release_date.substr(0,4)}</span></h1>
-    <p class="ratio">${film.vote_average}</p>
+    <div class="detail"><h1 class="title">${film.title}<span>(${film.release_date.substr(0,4)})</span></h1>
+    <p class="ratio"><i class="fa fa-star"></i>${film.vote_average}</p>
     <p class="overview">${film.overview}</p></div>
     `;
     detailFilm.appendChild(divFilm);
