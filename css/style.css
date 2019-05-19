@@ -1,4 +1,3 @@
-
 /*barra de navegacion*/
 #nav
 {
@@ -147,4 +146,32 @@ footer {
     border-radius: 10px;
     background-color: #020f18;
     background-image: -webkit-linear-gradient(90deg,transparent,rgba(0, 0, 0, 0.4) 50%,transparent,transparent)
+}
+/*pagina Detalle**/
+#detailFilm
+{
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#detailFilm article
+{
+    display: flex;
+    justify-content: center;
+}
+.detail
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+.detail h1,span
+{
+    margin-left: 20px;
+    color: #fb131f;
+    font-weight: 600;
 }
