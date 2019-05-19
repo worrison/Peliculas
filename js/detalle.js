@@ -28,15 +28,14 @@ function onLoad()
 function showDetails()
 {    
   let detailFilm = document.querySelector('#detailFilm');
-  detailFilm.style.backgroundImage='radial-gradient(circle at 20% 50%, rgba(3.14%, 14.51%, 40.39%, 0.98) 0%, rgba(3.14%, 14.51%, 40.39%, 0.88) 100%),url('+URL_IMAGE_BACKGROUND+''+film.poster_path+')';
-
   let divFilm = document.createElement('article');
-    divFilm.setAttribute("class", "container");//añado la clase container al elemento article
-    divFilm.innerHTML = `
-    <div class="img-fluid"><img src="${URL_IMAGE}${film.poster_path}" alt="${film.title}"></div>
-    <div class="detail"><h1 class="title">${film.title}<span>(${film.release_date.substr(0,4)})</span></h1>
-    <p class="ratio"><i class="fa fa-star"></i>${film.vote_average}</p>
-    <p class="overview">${film.overview}</p></div>
-    `;
-    detailFilm.appendChild(divFilm);
+  detailFilm.style.backgroundImage='radial-gradient(circle at 20% 50%, rgba(3.14%, 14.51%, 40.39%, 0.98) 0%, rgba(3.14%, 14.51%, 40.39%, 0.88) 100%),url('+URL_IMAGE_BACKGROUND+''+film.poster_path+')';
+  divFilm.setAttribute("class", "container");//añado la clase container al elemento article
+  divFilm.innerHTML = `
+  <div class="img-fluid"><img src="${URL_IMAGE}${film.poster_path}" alt="${film.title}"></div>
+  <div class="detail"><h1 class="title">${film.title}<span>(${film.release_date.substr(0,4)})</span></h1>
+  <p class="ratio"><i class="fa fa-star"></i>${film.vote_average}</p>
+  <p class="overview">${film.overview}</p></div>
+  `;
+  detailFilm.appendChild(divFilm);
 }

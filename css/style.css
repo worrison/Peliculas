@@ -151,8 +151,10 @@ footer {
     background-image: -webkit-linear-gradient(90deg,transparent,rgba(0, 0, 0, 0.4) 50%,transparent,transparent)
 }
 /*pagina Detalle**/
+
 #detailFilm
 {
+    filter: opacity(100) grayscale(50%) contrast(130%);
     height: 80vh;
     display: flex;
     justify-content: center;
