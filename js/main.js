@@ -79,6 +79,5 @@ function showFilms(filmsToPrint) {
 function buscar() {
   let textoBuscar = document.querySelector('#textBuscar').value.toLowerCase();
   let resultBusqueda = peliculas.filter(pelicula => pelicula.title.toLowerCase().includes(textoBuscar));
-  console.log(resultBusqueda);
   showFilms(resultBusqueda);
 }

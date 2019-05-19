@@ -12,6 +12,16 @@
     padding-top: 20px;
     padding-bottom: 20px;
 }
+/*section banner*/
+#banner
+{
+    background-image: url(/img/slider1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 30vh;
+}
 /*Section busqueda*/
 #sectionSearch
 {
@@ -19,6 +29,8 @@
     justify-content: center;
     background-color: #020f18;
     display: flex;
+    position: fixed;
+    z-index: 999;
 }
 #search
 {
@@ -121,4 +133,18 @@ footer {
     color: #fb131f;
     margin: 20px;
     font-size: 1.2em;
+}
+::-webkit-scrollbar{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.9);
+    border-radius: 10px;
+    background-color: #CCCCCC;
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: #020f18;
+    background-image: -webkit-linear-gradient(90deg,transparent,rgba(0, 0, 0, 0.4) 50%,transparent,transparent)
 }
