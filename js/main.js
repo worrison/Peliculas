@@ -8,7 +8,7 @@ let peliculas;
 
 window.addEventListener('load', onLoad);
 
-function onLoad() {
+async function onLoad() {
   let generos;
   let btnbuscar = document.querySelector('#btnBuscar');
   let inputText = document.getElementById("textBuscar");
@@ -17,13 +17,13 @@ function onLoad() {
   });
   btnbuscar.addEventListener('click', buscar);
 
-  axios.get(API_URL + API_POPULAR_URL + '?api_key=' + API_KEY).then((response) => {
+  let films=await axios.get(API_URL + API_POPULAR_URL + '?api_key=' + API_KEY)
     //console.log(response.data.results);
-    peliculas = response.data.results;
+    peliculas = films.data.results;
     showFilms(peliculas);
     //generos 
-    axios.get(API_URL + API_CATEGORIES + '?api_key=' + API_KEY).then((response) => {
-      generos = response.data.genres;
+    let genre=await axios.get(API_URL + API_CATEGORIES + '?api_key=' + API_KEY)
+      generos = genre.data.genres;
       console.log(generos);
       peliculas = peliculas.map((peliculas) => {
         let arrayGeneros = peliculas['genre_ids'].map((id) => {
@@ -34,12 +34,7 @@ function onLoad() {
         peliculas.stars = Math.round(peliculas["vote_average"] / 2);
         return peliculas;
       });
-    }).catch((err) => {
-      console.log(err.message, 'ha habido un error');
-    });
-  });
 }
-
 
 function showFilms(filmsToPrint) {
   console.log(filmsToPrint);
