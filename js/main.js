@@ -5,7 +5,7 @@ const API_KEY = '9ec2c792cfa94b0acb15cb59b0051990';
 const API_POPULAR_URL = 'movie/popular';
 const API_CATEGORIES = 'genre/movie/list';
 let peliculas;
-
+let idOption=document.querySelector('#ordenar');
 window.addEventListener('load', onLoad);
 
 // async function onLoad() {
@@ -38,9 +38,11 @@ window.addEventListener('load', onLoad);
 async function onLoad() {
     let generos;
     let btnbuscar = document.querySelector('#btnBuscar');
-    let inputText = document.getElementById("textBuscar");
+	let inputText = document.getElementById("textBuscar");
+	idOption.addEventListener("change",sortPeliculas);
+
     inputText.addEventListener("keyup", function (event) {
-        document.getElementById("btnBuscar").click();
+		document.getElementById("btnBuscar").click();
     });
     btnbuscar.addEventListener('click', buscar);
     //peliculas
@@ -51,8 +53,8 @@ async function onLoad() {
     let result = await Promise.all([films, genre])
     try {
         peliculas = result[0].data.results;
-        sortPeliculas();
-        //showFilms(peliculas);
+        //sortPeliculas();
+        showFilms(peliculas);
         generos = result[1].data.genres;
 
         peliculas = peliculas.map((peliculas) => {
@@ -65,15 +67,12 @@ async function onLoad() {
         });
 
     } catch (error) {
-        console - log("error")
+        console.log("error")
     };
-
-    //console.log(response.data.results);
     sortPeliculas();
 }
 
 function showFilms(filmsToPrint) {
-    //console.log(filmsToPrint);
     let content = document.querySelector('#list-films');
     content.innerHTML = "";
 
@@ -82,7 +81,6 @@ function showFilms(filmsToPrint) {
     }
 
     for (let film of filmsToPrint) {
-        //console.log(film.title);
         let card = document.createElement("div");
         card.classList.add('card');
         let {
@@ -114,10 +112,36 @@ function buscar() {
 }
 //ordenación alfabeticamente
 function sortPeliculas() {
+	let option=idOption.options[idOption.selectedIndex].value;
+	console.log(idOption,option);
+
+	switch (option) {
+	  case "alfa":
+			  peliculas.sort((a,b) => a.title > b.title? 1:-1);
+			  showFilms(peliculas);
+			  break;
+	  case "date":
+			  peliculas.sort((a,b) => a.release_date < b.release_date? 1:-1);
+			  showFilms(peliculas);
+			  break;
+	  case "popu":
+			  peliculas.sort((a,b) => a.popularity < b.popularity? 1:-1);
+			  showFilms(peliculas);
+			  break;
+	   case "vote":
+			  peliculas.sort((a,b) => a.vote_average < b.vote_average? 1:-1)
+			  showFilms(peliculas);
+			  break;
+	  
+	  default:
+			  showFilms(peliculas);
+		break;
+	}
+	
     //peliculas.sort((a,b) => a.title > b.title? 1:-1)//Ordenacion alfabetica:es lo mismo que lo de abajo
     //peliculas.sort((a,b) => a.release_date < b.release_date? 1:-1)//ordenacion por fecha de la mas actual a la mas antigua
     //peliculas.sort((a,b) => a.popularity < b.popularity? 1:-1)//ordenacion popularidad
-    peliculas.sort((a,b) => a.vote_average < b.vote_average? 1:-1)
+    //peliculas.sort((a,b) => a.vote_average < b.vote_average? 1:-1)
     
     //   peliculas.sort(function (a, b) {
     //     if (a.title > b.title) {
@@ -129,5 +153,5 @@ function sortPeliculas() {
     //     return 0;
     //   });
     //   console.log(peliculas);
-      showFilms(peliculas);
+      //showFilms(peliculas);
 }

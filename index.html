@@ -19,6 +19,13 @@
     </div>
     <section id="sectionSearch" class="container-fluid">
         <div id="search">
+                <select name="sort" id="ordenar">
+                        <option value="vacio" selected>Ordenar</option>
+                        <option value="alfa">Alfabeticamente</option>
+                        <option value="date">Fecha</option>
+                        <option value="popu">Popularidad</option>
+                        <option value="vote">Votación</option>
+                      </select>
             <input type="text" name="busqueda" id="textBuscar" placeholder="Busqueda de peliculas">
             <button id="btnBuscar" class="btn btn-dark">
                     <i class="fa fa-search"></i>
