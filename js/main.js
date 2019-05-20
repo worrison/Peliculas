@@ -36,66 +36,66 @@ window.addEventListener('load', onLoad);
 //       });
 // }
 async function onLoad() {
-  let generos;
-  let btnbuscar = document.querySelector('#btnBuscar');
-  let inputText = document.getElementById("textBuscar");
-  inputText.addEventListener("keyup", function (event) {
-    document.getElementById("btnBuscar").click();
-  });
-  btnbuscar.addEventListener('click', buscar);
+    let generos;
+    let btnbuscar = document.querySelector('#btnBuscar');
+    let inputText = document.getElementById("textBuscar");
+    inputText.addEventListener("keyup", function (event) {
+        document.getElementById("btnBuscar").click();
+    });
+    btnbuscar.addEventListener('click', buscar);
     //peliculas
-    let films=axios.get(API_URL + API_POPULAR_URL + '?api_key=' + API_KEY)
+    let films = axios.get(API_URL + API_POPULAR_URL + '?api_key=' + API_KEY)
     //generos 
-    let genre=axios.get(API_URL + API_CATEGORIES + '?api_key=' + API_KEY)
+    let genre = axios.get(API_URL + API_CATEGORIES + '?api_key=' + API_KEY)
 
-    let result = await Promise.all([films,genre])
-    try { 
-      peliculas = result[0].data.results;
-      peliculas=sortFilms(peliculas);
-      showFilms(peliculas);
-      generos = result[1].data.genres;
+    let result = await Promise.all([films, genre])
+    try {
+        peliculas = result[0].data.results;
+        sortPeliculas();
+        //showFilms(peliculas);
+        generos = result[1].data.genres;
 
-      peliculas = peliculas.map((peliculas) => {
-        let arrayGeneros = peliculas['genre_ids'].map((id) => {
-          return generos.find((genero) => genero.id === id);
+        peliculas = peliculas.map((peliculas) => {
+            let arrayGeneros = peliculas['genre_ids'].map((id) => {
+                return generos.find((genero) => genero.id === id);
+            });
+            peliculas.genres = arrayGeneros; //asigna la propiedad genres cn los datos de arry generos
+            peliculas.stars = Math.round(peliculas["vote_average"] / 2);
+            return peliculas;
         });
-        peliculas.genres = arrayGeneros; //asigna la propiedad genres cn los datos de arry generos
-        peliculas.stars = Math.round(peliculas["vote_average"] / 2);
-        return peliculas;
-      });
 
     } catch (error) {
-       console-log("error")
+        console - log("error")
     };
-    
+
     //console.log(response.data.results);
-    
+    sortPeliculas();
 }
 
 function showFilms(filmsToPrint) {
-  //console.log(filmsToPrint);
-  let content = document.querySelector('#list-films');
-  content.innerHTML = "";
+    //console.log(filmsToPrint);
+    let content = document.querySelector('#list-films');
+    content.innerHTML = "";
 
-  if (filmsToPrint.length <= 0) {
-    content.innerHTML = "<h1>Ningun resultado válido</h1>";
-  }
+    if (filmsToPrint.length <= 0) {
+        content.innerHTML = "<h1>Ningun resultado válido</h1>";
+    }
 
-  for (let film of filmsToPrint) {
-    //console.log(film.title);
-    let card = document.createElement("div");
-    card.classList.add('card');
-    let {
-      id: id,
-      poster_path: image,
-      title,
-      vote_average: vote,
-      release_date: date
-    } = film; //desestructuracion de objetos.
+    for (let film of filmsToPrint) {
+        //console.log(film.title);
+        let card = document.createElement("div");
+        card.classList.add('card');
+        let {
+            id: id,
+            poster_path: image,
+            title,
+            vote_average: vote,
+            release_date: date
+        } = film; //desestructuracion de objetos.
 
-    let detalle = "detalle.html?id=" + id;
-    
-    card.innerHTML = `<a href="${detalle}">
+        let detalle = "detalle.html?id=" + id;
+
+        card.innerHTML = `<a href="${detalle}">
         <img src="${URL_IMAGE+image}"class="card-img-top">
         <div class="card-body">
           <p class="card-text text-light"><i class="fa fa-star"></i>${vote}</p>
@@ -103,16 +103,31 @@ function showFilms(filmsToPrint) {
           <p class="card-text text-light">${date.substr(0,4)}</p>
         </div>
         </a>`;
-    content.appendChild(card);
-  }
+        content.appendChild(card);
+    }
 }
 
 function buscar() {
-  let textoBuscar = document.querySelector('#textBuscar').value.toLowerCase();
-  let resultBusqueda = peliculas.filter(pelicula => pelicula.title.toLowerCase().includes(textoBuscar));
-  showFilms(resultBusqueda);
+    let textoBuscar = document.querySelector('#textBuscar').value.toLowerCase();
+    let resultBusqueda = peliculas.filter(pelicula => pelicula.title.toLowerCase().includes(textoBuscar));
+    showFilms(resultBusqueda);
 }
-function sortPeliculas()
-{
-
+//ordenación alfabeticamente
+function sortPeliculas() {
+    //peliculas.sort((a,b) => a.title > b.title? 1:-1)//Ordenacion alfabetica:es lo mismo que lo de abajo
+    //peliculas.sort((a,b) => a.release_date < b.release_date? 1:-1)//ordenacion por fecha de la mas actual a la mas antigua
+    //peliculas.sort((a,b) => a.popularity < b.popularity? 1:-1)//ordenacion popularidad
+    peliculas.sort((a,b) => a.vote_average < b.vote_average? 1:-1)
+    
+    //   peliculas.sort(function (a, b) {
+    //     if (a.title > b.title) {
+    //       return 1;
+    //     }
+    //     if (a.title < b.title) {
+    //       return -1;
+    //     }
+    //     return 0;
+    //   });
+    //   console.log(peliculas);
+      showFilms(peliculas);
 }
