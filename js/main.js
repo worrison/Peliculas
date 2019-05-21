@@ -5,6 +5,7 @@ const API_KEY = '9ec2c792cfa94b0acb15cb59b0051990';
 const API_POPULAR_URL = 'movie/popular';
 const API_CATEGORIES = 'genre/movie/list';
 let peliculas;
+let auxpeliculas;
 let idOption=document.querySelector('#ordenar');
 window.addEventListener('load', onLoad);
 
@@ -39,7 +40,7 @@ async function onLoad() {
     let generos;
     let btnbuscar = document.querySelector('#btnBuscar');
 	let inputText = document.getElementById("textBuscar");
-	idOption.addEventListener("change",sortPeliculas);
+	idOption.addEventListener("change",buscar);
 
     inputText.addEventListener("keyup", function (event) {
 		document.getElementById("btnBuscar").click();
@@ -53,8 +54,6 @@ async function onLoad() {
     let result = await Promise.all([films, genre])
     try {
         peliculas = result[0].data.results;
-        //sortPeliculas();
-        showFilms(peliculas);
         generos = result[1].data.genres;
 
         peliculas = peliculas.map((peliculas) => {
@@ -69,7 +68,7 @@ async function onLoad() {
     } catch (error) {
         console.log("error")
     };
-    sortPeliculas();
+    buscar();
 }
 
 function showFilms(filmsToPrint) {
@@ -108,33 +107,33 @@ function showFilms(filmsToPrint) {
 function buscar() {
     let textoBuscar = document.querySelector('#textBuscar').value.toLowerCase();
     let resultBusqueda = peliculas.filter(pelicula => pelicula.title.toLowerCase().includes(textoBuscar));
-    showFilms(resultBusqueda);
+    auxpeliculas=resultBusqueda;
+    auxpeliculas=sortPeliculas(auxpeliculas);
+    showFilms(auxpeliculas);
 }
 //ordenación alfabeticamente
-function sortPeliculas() {
+function sortPeliculas(resultadoBusqueda) {
 	let option=idOption.options[idOption.selectedIndex].value;
-	console.log(idOption,option);
-
 	switch (option) {
 	  case "alfa":
-			  peliculas.sort((a,b) => a.title > b.title? 1:-1);
-			  showFilms(peliculas);
+			  resultadoBusqueda.sort((a,b) => a.title > b.title? 1:-1);
+			  return(resultadoBusqueda);
 			  break;
 	  case "date":
-			  peliculas.sort((a,b) => a.release_date < b.release_date? 1:-1);
-			  showFilms(peliculas);
+			  resultadoBusqueda.sort((a,b) => a.release_date < b.release_date? 1:-1);
+			  return(resultadoBusqueda);
 			  break;
 	  case "popu":
-			  peliculas.sort((a,b) => a.popularity < b.popularity? 1:-1);
-			  showFilms(peliculas);
+			  resultadoBusqueda.sort((a,b) => a.popularity < b.popularity? 1:-1);
+			  return(resultadoBusqueda);
 			  break;
 	   case "vote":
-			  peliculas.sort((a,b) => a.vote_average < b.vote_average? 1:-1)
-			  showFilms(peliculas);
+			  resultadoBusqueda.sort((a,b) => a.vote_average < b.vote_average? 1:-1)
+			  return(resultadoBusqueda);
 			  break;
 	  
 	  default:
-			  showFilms(peliculas);
+			  return(resultadoBusqueda);
 		break;
 	}
 	
