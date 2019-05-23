@@ -4,20 +4,23 @@ const URL_IMAGE = "http://image.tmdb.org/t/p/w300_and_h450_bestv2/";//Imagen nor
 const API_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '9ec2c792cfa94b0acb15cb59b0051990';
 const API_DETAILS = 'movie/';
-let film;
+let film,btnLike,paramIdFilm,filmLikes=0;
+let pelicula=[];
 window.addEventListener('load',onLoad);
 
 
 function onLoad()
 {
     let url=new URL(window.location.href);
-    let paramIdFilm = url.searchParams.get('id');
+    paramIdFilm = url.searchParams.get('id');
     console.log(paramIdFilm);
 
     axios.get(API_URL + API_DETAILS + paramIdFilm + '?api_key=' + API_KEY).then((response) => {
       console.log(response.data);
       film=response.data;
       showDetails();
+      btnLike=document.querySelector('#like');
+      btnLike.addEventListener('click',like);
 
     }).catch((err) => {
       console.log(err.message, 'ha habido un error');
@@ -35,7 +38,34 @@ function showDetails()
   <div class="img-fluid"><img src="${URL_IMAGE}${film.poster_path}" alt="${film.title}"></div>
   <div class="detail"><h1 class="title">${film.title}<span>(${film.release_date.substr(0,4)})</span></h1>
   <p class="ratio"><i class="fa fa-star"></i>${film.vote_average}</p>
+  <button id="like"><i id="iconUnlike" class="far fa-heart"></i><i id="iconLike" class="fas fa-heart oculto"></i></button>
   <p class="overview">${film.overview}</p></div>
   `;
   detailFilm.appendChild(divFilm);
+}
+function like()
+{
+  let iconLike=document.querySelector('#iconLike');
+  let iconUnlike=document.querySelector('#iconUnlike');
+
+  if (iconLike.classList.contains('oculto'))//si no me gusta
+  {
+    iconLike.classList.remove('oculto');
+    iconUnlike.classList.add('oculto');
+    console.log("me gusta");
+    filmLikes=1;
+    
+  }
+  else{
+    filmLikes=0;
+    iconUnlike.classList.remove('oculto');
+    iconLike.classList.add('oculto');
+  }
+  //pelicula.push(JSON.parse(localStorage.getItem("pelicula")));
+  localStorage.setItem("pelicula",JSON.stringify( [{paramIdFilm,filmLikes}] ));
+  pelicula.push(JSON.parse(localStorage.getItem("pelicula"))[0]);
+  console.log(pelicula);
+  localStorage.setItem("pelicula",JSON.stringify(pelicula));
+
+  //console.log("hola");
 }
