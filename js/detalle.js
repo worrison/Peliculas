@@ -42,39 +42,64 @@ function showDetails()
   `;
   detailFilm.appendChild(divFilm);
 }
+
 function like()
 {
   let iconLike=document.querySelector('#iconLike');
   let iconUnlike=document.querySelector('#iconUnlike');
 
-  if (iconLike.classList.contains('oculto'))//si no me gusta
-  {
+  if (iconLike.classList.contains('oculto'))//por defecto estará activo el no me gusta.
+  {//estado activo icono me gusta
     iconLike.classList.remove('oculto');
     iconUnlike.classList.add('oculto');
     console.log("me gusta");
+    addLocalStorage();
   }
-  else{
+  else{//estado activo icono no me gusta
     iconUnlike.classList.remove('oculto');
     iconLike.classList.add('oculto');
+    console.log("no me gusta");
+    removeLocalStorage();
+    
   }
-  addLocalStorage();
+  
+}
+
+//peliculas con me gusta que tenemos guardadas en localstorage
+function loadLocalStorage()
+{
+  return (JSON.parse(localStorage.getItem('pelicula')))
 }
 
 function addLocalStorage()
 {
   let peliculas;
-  peliculas=JSON.parse(localStorage.getItem('pelicula'));//obtengo lo que hay en el localstorage
+  peliculas=loadLocalStorage();
+
    if(peliculas=== null)
    {
       peliculas=[];
    }
-   if(existFilm(paramIdFilm,peliculas)===-1)//si no encuentra pelicula pelicula nueva
+   if(existFilm(paramIdFilm,peliculas)===-1)//si no encuentra pelicula nueva
    {
-      peliculas.push(paramIdFilm);//obtengo el id de la pelicula actual y lo guardo en mi array
+      peliculas.push(paramIdFilm);
    }
-   localStorage.setItem("pelicula",JSON.stringify(peliculas));//guardo todas las peliculas al localstorage
+   localStorage.setItem("pelicula",JSON.stringify(peliculas));
    console.log(peliculas);
 }
+function removeLocalStorage()
+{
+  let peliculas;
+  peliculas=loadLocalStorage();
+
+   if(existFilm(paramIdFilm,peliculas)!=-1)//si encuentra pelicula
+   {
+      peliculas.splice(existFilm(paramIdFilm,peliculas),1);
+   }
+   localStorage.setItem("pelicula",JSON.stringify(peliculas));
+   console.log(peliculas);
+}
+
 function existFilm(idABuscar,contenidoPeliculas)
 {
   let encontrado = contenidoPeliculas.indexOf(idABuscar);
