@@ -12,7 +12,6 @@ body{
 {   
     background-color: #020f18;
     padding-top: 20px;
-    padding-bottom: 20px;
 }
 /*section banner*/
 #banner
@@ -31,7 +30,6 @@ body{
     justify-content: center;
     background-color: #020f18;
     display: flex;
-    position: fixed;
     z-index: 999;
 }
 #search
@@ -121,6 +119,10 @@ p.card-text.text-light.text-center {
     -ms-transition: opacity 1s;
     transition: opacity 1s;
 }
+button
+{
+    z-index: 10;
+}
 footer {
     display: flex;
     justify-content: center;
@@ -128,8 +130,6 @@ footer {
     flex-direction: row;
     /* padding: 40px 0 40px 0; */
     background-color: #020f18;
-    position: sticky;
-    bottom: 0;
 }
 .fab {
     color: #fb131f;

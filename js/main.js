@@ -99,7 +99,7 @@ function showFilms(filmsToPrint) {
           <p class="card-text text-light text-center">${title}</p>
           <p class="card-text text-light">${date.substr(0,4)}</p>
         </div>
-        </a>`;
+        </a><button id="like"><i id="iconUnlike" class="far fa-heart"></i><i id="iconLike" class="fas fa-heart oculto"></i></button>`;
         content.appendChild(card);
     }
 }
