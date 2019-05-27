@@ -4,8 +4,7 @@ const URL_IMAGE = "http://image.tmdb.org/t/p/w300_and_h450_bestv2/";//Imagen nor
 const API_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '9ec2c792cfa94b0acb15cb59b0051990';
 const API_DETAILS = 'movie/';
-let film,btnLike,paramIdFilm,filmLikes=0;
-let pelicula=[];
+let film,btnLike,paramIdFilm;
 window.addEventListener('load',onLoad);
 
 
@@ -53,19 +52,31 @@ function like()
     iconLike.classList.remove('oculto');
     iconUnlike.classList.add('oculto');
     console.log("me gusta");
-    filmLikes=1;
-    
   }
   else{
-    filmLikes=0;
     iconUnlike.classList.remove('oculto');
     iconLike.classList.add('oculto');
   }
-  //pelicula.push(JSON.parse(localStorage.getItem("pelicula")));
-  localStorage.setItem("pelicula",JSON.stringify( [{paramIdFilm,filmLikes}] ));
-  pelicula.push(JSON.parse(localStorage.getItem("pelicula"))[0]);
-  console.log(pelicula);
-  localStorage.setItem("pelicula",JSON.stringify(pelicula));
+  addLocalStorage();
+}
 
-  //console.log("hola");
+function addLocalStorage()
+{
+  let peliculas;
+  peliculas=JSON.parse(localStorage.getItem('pelicula'));//obtengo lo que hay en el localstorage
+   if(peliculas=== null)
+   {
+      peliculas=[];
+   }
+   if(existFilm(paramIdFilm,peliculas)===-1)//si no encuentra pelicula pelicula nueva
+   {
+      peliculas.push(paramIdFilm);//obtengo el id de la pelicula actual y lo guardo en mi array
+   }
+   localStorage.setItem("pelicula",JSON.stringify(peliculas));//guardo todas las peliculas al localstorage
+   console.log(peliculas);
+}
+function existFilm(idABuscar,contenidoPeliculas)
+{
+  let encontrado = contenidoPeliculas.indexOf(idABuscar);
+  return encontrado
 }
